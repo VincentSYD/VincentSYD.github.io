@@ -17,10 +17,11 @@
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-  <a class="skip" href="#overview">Skip to content</a>
+  <a class="skip" href="#demo">Skip to content</a>
   <header class="top">
     <a class="brand" href="#top">DuplexAgent</a>
     <nav class="nav" aria-label="Page">
+      <a href="#demo">Demo</a>
       <a href="#overview">Overview</a>
       <a href="#session">Session</a>
       <a href="#harness">Harness</a>
@@ -28,7 +29,6 @@
       <a href="#results">Results</a>
       <a href="#rsi">RSI</a>
       <a href="#citation">Citation</a>
-      <a href="https://vincentsyd.github.io/">Homepage</a>
     </nav>
   </header>
 
@@ -39,7 +39,7 @@
       <p class="subtitle">Recursive harness improvement for full-duplex voice agent collaboration</p>
       <p class="dek">The interaction model stays on the live channel. Search, reasoning, and coding run in a delegation pool. A six-module harness decides what is delegated, which task is current, and when a result may be spoken. Duplex-Harness-RSI revises those modules from timed conversations whose failures name the module to repair.</p>
       <p class="authors">
-        <a href="https://vincentsyd.github.io/">Yingda Shen</a><sup>*</sup>
+        Yingda Shen<sup>*</sup>
         Yuxiang Wang<sup>*</sup>
         Kunyu Feng<sup>*</sup>
         Qinke Ni<sup>*</sup>
@@ -51,10 +51,14 @@
         <a href="https://drwuz.com/">Zhizheng Wu</a><sup>*†</sup>
       </p>
       <p class="affil"><sup>*</sup> The Chinese University of Hong Kong, Shenzhen &nbsp;&nbsp; <sup>†</sup> Amphion Technology</p>
+      <div class="affiliation-row" aria-label="Affiliations">
+        <img src="assets/brand/cuhksz.png" data-logo="cuhksz" alt="The Chinese University of Hong Kong, Shenzhen">
+        <img src="assets/brand/amphion.png" data-logo="amphion" alt="安菲翁科技">
+      </div>
       <div class="actions">
         <a class="btn primary" href="assets/tech-report.pdf">Tech Report</a>
         <span class="btn ghost" aria-disabled="true">Code coming soon</span>
-        <a class="btn ghost" href="#results">Results</a>
+        <a class="btn ghost" href="#demo">Demo</a>
       </div>
     </header>
 
@@ -68,9 +72,20 @@
       <p class="stat-note">Qwen-Realtime attachment. VoiceChat shows larger gains on the same tasks, including +44.4 MMSU. Full tables are in the tech report.</p>
     </div>
 
+    <section id="demo">
+      <div class="wrap">
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 01 &nbsp; Demo</p>
+        <h2>The conversation stays live while the work runs</h2>
+        <p class="lead">A recorded session of the system. The interaction model keeps the microphone. The harness trace shows which module is acting, and a coding agent builds in the background without taking the turn.</p>
+        <video class="demo" controls playsinline preload="metadata" poster="assets/demo-poster.jpg">
+          <source src="assets/demo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
     <section id="overview">
       <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 01 &nbsp; Overview</p>
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 02 &nbsp; Overview</p>
         <h2>One harness, then a loop that edits it</h2>
         <p class="lead">A deployed system is an interaction model, a delegation pool, and a collaboration harness. Duplex-Harness-RSI changes only the harness. The same reasoning and coding roles that serve the user also plan the next exam and propose the next repair.</p>
         <figure class="figure">
@@ -82,7 +97,7 @@
 
     <section id="session">
       <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 02 &nbsp; A live session</p>
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 03 &nbsp; A live session</p>
         <h2>The user changes the task while work is running</h2>
         <p class="lead">A useful result is one that still answers the current request and can be spoken without talking over the user. The session below is the running example in the report: Snake is cancelled, Tetris replaces it, and the late Snake result is discarded.</p>
         <figure class="figure">
@@ -111,7 +126,7 @@
 
     <section id="harness">
       <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 03 &nbsp; Harness</p>
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 04 &nbsp; Harness</p>
         <h2>Six decisions, each with an edit surface</h2>
         <p class="lead">The split is what makes a failure local. Policy and Intake decide what the user means. Hold and Deliver protect the conversational rhythm. Worker hands work to a delegate. Memory keeps context on both timelines.</p>
         <div class="mods">
@@ -157,7 +172,7 @@
 
     <section id="simulator">
       <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 04 &nbsp; Simulator</p>
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 05 &nbsp; Simulator</p>
         <h2>Tests that say which module failed</h2>
         <p class="lead">A request type fixes the capability and the allowed route. An interaction pattern fixes what happens while that request is in flight: refinement, cancellation, overlap, delay. Wording and audio change only after the expected behaviour is fixed, so a failure still points at a module.</p>
         <figure class="figure">
@@ -174,7 +189,7 @@
 
     <section id="results">
       <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 05 &nbsp; Results</p>
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 06 &nbsp; Results</p>
         <h2>Delegation helps when the handoff stays exact</h2>
         <div class="prose">
           <p>A background model can write a better spoken answer and still lose the benchmark function call, if the harness replaces that call with a title or a sentence. DuplexAgent keeps the routing decision separate from the content of the handoff. Direct questions stay on the interaction model. Tool requests leave as executable calls, with the arguments Memory kept from the user turn.</p>
@@ -193,7 +208,7 @@
 
     <section id="rsi">
       <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 06 &nbsp; Duplex-Harness-RSI</p>
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 07 &nbsp; Duplex-Harness-RSI</p>
         <h2>The loop outperforms another pass over the same exams</h2>
         <div class="prose">
           <p>On a fixed 76-item VoiceChat core, the initial harness and Qwen-Audio-Agent both score 54.6. Giving every exam from the campaign to one edit reaches 57.4. Replaying those exams for ten revisions, without per-round attribution or repair history, reaches 61.9. Ten rounds of Duplex-Harness-RSI reach 85.3. Missed delegation falls from 30.3% of core items to 1.3%. Extra delegation rises from 3.9% to 6.6%, and ignored control stays at 5.3%.</p>
@@ -249,7 +264,7 @@
   <footer class="foot">
     <div class="wrap">
       <p>DuplexAgent is a research project by The Chinese University of Hong Kong, Shenzhen and Amphion Technology. This page is maintained by the authors.</p>
-      <p><a href="https://vincentsyd.github.io/">Yingda Shen</a> · <a href="assets/tech-report.pdf">Tech report (PDF)</a></p>
+      <p><a href="assets/tech-report.pdf">Tech report (PDF)</a></p>
     </div>
   </footer>
   <script>
