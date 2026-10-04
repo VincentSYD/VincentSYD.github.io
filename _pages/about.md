@@ -25,6 +25,7 @@ Prior to his M.Phil. studies, Yingda received his B.Eng. degree from the Electro
 
 
 # 🔥 News
+- *2026.10*: &nbsp;🎉🎉 [DuplexAgent](https://vincentsyd.github.io/projects/duplexagent/) project page released!
 - *2026.03*: &nbsp;🎉🎉 [WhispEar](https://whispear-demo.github.io/)'s demo page released! 
 - *2026.03*: &nbsp;🎉🎉 [WhispEar: A Bi-directional Framework for Scaling Whispered Speech Conversion via Pseudo-Parallel Whisper Generation](https://arxiv.org/abs/2603.08046)'s arxiv preprint published!
 - *2025.12*: &nbsp;🎉🎉 Start internship at [Microsoft Research](https://www.microsoft.com/en-us/research/)!
@@ -32,6 +33,18 @@ Prior to his M.Phil. studies, Yingda received his B.Eng. degree from the Electro
 - *2025.06*: &nbsp;🎉🎉 [**T**ransformer-**E**npowered **A**uthor-topic **M**odel (**TEAM**)](https://github.com/VincentShen0217/TEAM)'s code repository released!
 
 # 📝 Publications 
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Technical Report</div><img src='images/duplexagent.jpg' alt="DuplexAgent overview" width="300"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[DuplexAgent: Recursive Harness Improvement for Full-Duplex Voice Agent Collaboration](https://vincentsyd.github.io/projects/duplexagent/)
+
+**Yingda Shen<sup>*</sup>**, Yuxiang Wang<sup>*</sup>, Kunyu Feng<sup>*</sup>, Qinke Ni<sup>*</sup>, Jiaqi Li<sup>*†</sup>, Minghao Hsu<sup>*</sup>, Junan Zhang<sup>*</sup>, Dekun Chen<sup>*</sup>, Yutong Bian<sup>*†</sup>, Zhizheng Wu<sup>*†</sup>
+
+[**Project Page**](https://vincentsyd.github.io/projects/duplexagent/) | [**Tech Report**](https://vincentsyd.github.io/projects/duplexagent/assets/tech-report.pdf)
+- DuplexAgent keeps a full-duplex interaction model on the live channel and delegates search, reasoning, and coding through a six-module harness. Duplex-Harness-RSI revises that harness from simulated conversations whose failures identify the module to repair.
+</div>
+</div>
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arxiv Preprint</div><img src='images/whispear.png' alt="sym" width="300"></div></div>
 <div class='paper-box-text' markdown="1">
