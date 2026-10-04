@@ -41,7 +41,7 @@ Prior to his M.Phil. studies, Yingda received his B.Eng. degree from the Electro
 
 **Yingda Shen<sup>*</sup>**, Yuxiang Wang<sup>*</sup>, Kunyu Feng<sup>*</sup>, Qinke Ni<sup>*</sup>, Jiaqi Li<sup>*†</sup>, Minghao Hsu<sup>*</sup>, Junan Zhang<sup>*</sup>, Dekun Chen<sup>*</sup>, Yutong Bian<sup>*†</sup>, Zhizheng Wu<sup>*†</sup>
 
-[**Project Page**](https://vincentsyd.github.io/projects/duplexagent/) | [**Tech Report**](https://vincentsyd.github.io/projects/duplexagent/assets/tech-report.pdf)
+[**Project Page**](https://vincentsyd.github.io/projects/duplexagent/)
 - DuplexAgent keeps a full-duplex interaction model on the live channel and delegates search, reasoning, and coding through a six-module harness. Duplex-Harness-RSI revises that harness from simulated conversations whose failures identify the module to repair.
 </div>
 </div>
