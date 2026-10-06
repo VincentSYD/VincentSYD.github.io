@@ -195,8 +195,8 @@
           <p>A background model can write a better spoken answer and still lose the benchmark function call, if the harness replaces that call with a title or a sentence. DuplexAgent keeps the routing decision separate from the content of the handoff. Direct questions stay on the interaction model. Tool requests leave as executable calls, with the arguments Memory kept from the user turn.</p>
         </div>
         <figure class="figure">
-          <img src="assets/gains.png" alt="Dumbbell chart comparing each interaction model alone with DuplexAgent. VoiceChat gains 22.3 BFCL, 31.0 FDB-v3 Pass at 1, 26.4 OBQA, and 44.4 MMSU. Qwen-Realtime gains 8.8 BFCL, 10.0 FDB-v3 Pass at 1, 5.8 OBQA, and 17.9 MMSU.">
-          <figcaption><strong>Gains over the matching interaction model.</strong> Grey is the model alone. Purple is DuplexAgent. The same attachment improves spoken knowledge and executable tool use.</figcaption>
+          <img src="assets/gains.png" alt="Grouped bar charts for VoiceChat and Qwen-Realtime. On each attachment, grey is the interaction model alone, lavender is Qwen-Audio-Agent, and purple is DuplexAgent, on BFCL average, FDB-v3 Pass at 1, OBQA, and MMSU.">
+          <figcaption><strong>DuplexAgent above the matching interaction model and Qwen-Audio-Agent.</strong> Grey is the model alone. Lavender is Qwen-Audio-Agent. Purple is DuplexAgent.</figcaption>
         </figure>
         <figure class="figure" style="margin-top:14px">
           <img src="assets/leaderboard.png" alt="Four bar charts of delegated systems. DuplexAgent leads MMSU at 82.7, BFCL parallel-multiple at 78.0, FDB-v3 Pass at 1 at 49.0, and FDB-v1 interrupt takeover at 97.0.">
@@ -216,7 +216,7 @@
         </div>
         <figure class="figure">
           <img src="assets/rsi-voicechat.png" alt="VoiceChat ablation. Collaboration score rises from 54.6 for the initial harness to 57.4 for one-shot editing, 61.9 for sequential editing, and 85.3 for RSI. A heatmap shows missed delegation falling from 30.3 percent to 1.3 percent.">
-          <figcaption><strong>VoiceChat, same 76-item core.</strong> One-shot pools the exams. Sequential editing replays them. RSI uses each round’s attributed failures and the archive of earlier repairs.</figcaption>
+          <figcaption><strong>VoiceChat, same 76-item core.</strong> One-shot pools the exams. Sequential editing replays them. Duplex-Harness-RSI uses each round’s diagnosis and the repair archive.</figcaption>
         </figure>
         <figure class="figure" style="margin-top:14px">
           <img src="assets/rsi-qwen.png" alt="Line chart of Qwen-Realtime harness improvement. The best retained score climbs from 47.1 at g0 to 84.8 at g8 across 18 rounds, with a dashed core-evaluation line that sometimes dips between retained revisions.">
