@@ -90,7 +90,7 @@
         <p class="lead">A deployed system is an interaction model, a delegation pool, and a collaboration harness. Duplex-Harness-RSI changes only the harness. The same reasoning and coding roles that serve the user also plan the next exam and propose the next repair.</p>
         <figure class="figure">
           <img src="assets/overview.png" alt="Diagram of DuplexAgent. The user talks to an interaction model, which hands work to a harness that accepts, tracks, routes, and delivers. The harness sends asynchronous tasks to a delegation pool for search, reasoning, and code. Below, one improvement round runs from a simulator and exam planner through an observer, diagnoser, harness editor, automatic evaluation, and stored experience.">
-          <figcaption><strong>DuplexAgent and one round of Duplex-Harness-RSI.</strong> The live path keeps listening and speaking on the interaction model. The improvement path profiles failures, patches the attributed module, and keeps a candidate only when paired evaluation agrees.</figcaption>
+          <figcaption><strong>Schematic of DuplexAgent and Duplex-Harness-RSI.</strong></figcaption>
         </figure>
       </div>
     </section>
@@ -102,7 +102,7 @@
         <p class="lead">A useful result is one that still answers the current request and can be spoken without talking over the user. The session below is the running example in the report: Snake is cancelled, Tetris replaces it, and the late Snake result is discarded.</p>
         <figure class="figure">
           <img src="assets/comic.jpg" alt="Six-panel comic. A person asks a small robot to build Snake. While Snake is running the robot stays present. The person cancels Snake and asks for Tetris. A stale Snake result is discarded. Tetris becomes ready and the robot waits for a pause, then says the Tetris game is ready.">
-          <figcaption><strong>Task identity survives the live channel.</strong> Intake resolves the replacement against the current ledger. Deliver waits for a speaking window and returns only Tetris.</figcaption>
+          <figcaption><strong>A full-duplex collaboration session.</strong> The user requests Snake, then cancels it and asks for Tetris while work is running. The obsolete Snake result is discarded. The current Tetris result returns through the interaction model after the user pauses.</figcaption>
         </figure>
         <div class="story">
           <article>
@@ -177,7 +177,7 @@
         <p class="lead">A request type fixes the capability and the allowed route. An interaction pattern fixes what happens while that request is in flight: refinement, cancellation, overlap, delay. Wording and audio change only after the expected behaviour is fixed, so a failure still points at a module.</p>
         <figure class="figure">
           <img src="assets/simulator.png" alt="Simulator diagram. Experience feeds an exam planner, which selects a cell in a grid of request types against interaction patterns. A selected cell is compiled into a timed test, then varied with acoustic conditions, speech rendering, and spoken paraphrases to form a corpus.">
-          <figcaption><strong>Experience-guided test construction.</strong> The bank is 19 request types by 22 interaction patterns. The Exam Planner shifts weight toward recent weaknesses and keeps a fixed core so rounds stay comparable.</figcaption>
+          <figcaption><strong>Test-conversation construction.</strong> The Exam Planner selects coverage over request types, interaction patterns, and input conditions. Content generation and deterministic temporal composition produce a corpus with explicit expectations. Speech rendering and acoustic augmentation turn it into timed audio input.</figcaption>
         </figure>
         <div class="chips">
           <div class="chip"><b>Content.</b> Conversational, information, reasoning, action.</div>
@@ -196,11 +196,11 @@
         </div>
         <figure class="figure">
           <img src="assets/gains.png" alt="Grouped bar charts for VoiceChat and Qwen-Realtime. On each attachment, grey is the interaction model alone, lavender is Qwen-Audio-Agent, and purple is DuplexAgent, on BFCL average, FDB-v3 Pass at 1, OBQA, and MMSU.">
-          <figcaption><strong>DuplexAgent above the matching interaction model and Qwen-Audio-Agent.</strong> Grey is the model alone. Lavender is Qwen-Audio-Agent. Purple is DuplexAgent.</figcaption>
+          <figcaption>DuplexAgent scores above its standalone interaction model and above Qwen-Audio-Agent on the same attachment.</figcaption>
         </figure>
         <figure class="figure" style="margin-top:14px">
           <img src="assets/leaderboard.png" alt="Four bar charts of delegated systems. DuplexAgent leads MMSU at 82.7, BFCL parallel-multiple at 78.0, FDB-v3 Pass at 1 at 49.0, and FDB-v1 interrupt takeover at 97.0.">
-          <figcaption><strong>Selected comparisons among delegated systems,</strong> with the Qwen-Realtime attachment for DuplexAgent and Qwen-Audio-Agent. Scores are percentages. Higher is better.</figcaption>
+          <figcaption>Benchmark results for DuplexAgent (blue), compared with other collaboration systems (gray). Higher is better on every panel. Intelligence reports MMSU accuracy, agentic tool use reports BFCL parallel-multiple and FDB-v3 Pass@1, and duplex reports FDB-v1 interrupt TOR. DuplexAgent is stronger on all three capabilities. All collaboration systems use the same delegation LLM.</figcaption>
         </figure>
         <div class="note"><strong>Timing is a separate result.</strong> Interrupt takeover stays high: 0.965 with VoiceChat and 0.97 with Qwen-Realtime. Pause behaviour is mixed. On Qwen-Realtime, synthetic pause takeover moves from 0.074 to 0.147, so one hesitation condition gets worse. The report does not treat duplex timing as uniformly improved.</div>
       </div>
@@ -216,15 +216,15 @@
         </div>
         <figure class="figure">
           <img src="assets/rsi-voicechat.png" alt="VoiceChat ablation. Collaboration score rises from 54.6 for the initial harness to 57.4 for one-shot editing, 61.9 for sequential editing, and 85.3 for RSI. A heatmap shows missed delegation falling from 30.3 percent to 1.3 percent.">
-          <figcaption><strong>VoiceChat, same 76-item core.</strong> One-shot pools the exams. Sequential editing replays them. Duplex-Harness-RSI uses each round’s diagnosis and the repair archive.</figcaption>
+          <figcaption>VoiceChat harness ablation on the fixed core. The left panel is the collaboration score <em>Q</em>, and the right panel is the rate of each diagnostic failure. Duplex-Harness-RSI scores higher than one-shot or sequential editing.</figcaption>
         </figure>
         <figure class="figure" style="margin-top:14px">
           <img src="assets/rsi-qwen.png" alt="Line chart of Qwen-Realtime harness improvement. The best retained score climbs from 47.1 at g0 to 84.8 at g8 across 18 rounds, with a dashed core-evaluation line that sometimes dips between retained revisions.">
-          <figcaption><strong>Qwen-Realtime campaign.</strong> Dashed teal is the core evaluation each round. The purple staircase is the best retained score, from g<sub>0</sub> to g<sub>8</sub>.</figcaption>
+          <figcaption>Duplex-Harness-RSI on Qwen-Realtime. Retained versions raise the collaboration score on the fixed core from the initial harness <em>g</em><sub>0</sub> to <em>g</em><sub>8</sub>.</figcaption>
         </figure>
 
         <h2 style="margin-top:36px">What the modules changed</h2>
-        <p class="lead">Relative reductions are on the local exam used to test each repair. They explain the mechanism. The core scores above are the summary.</p>
+        <p class="lead">Representative harness repairs. Each change reduces the targeted failures on the local exam used to test it.</p>
         <div class="table-wrap">
           <table>
             <thead>
