@@ -37,7 +37,7 @@
       <p class="kicker"><span class="dash" aria-hidden="true"></span> Full-duplex voice collaboration</p>
       <h1>DuplexAgent</h1>
       <p class="subtitle">Recursive harness improvement for full-duplex voice agent collaboration</p>
-      <p class="dek">The interaction model stays on the live channel. Search, reasoning, and coding run in a delegation pool. A six-module harness decides what is delegated, which task is current, and when a result may be spoken. Duplex-Harness-RSI revises those modules from timed conversations whose failures name the module to repair.</p>
+      <p class="dek">The interaction model stays on the live channel. Search, reasoning, and coding run in a delegation pool. A six-module harness decides what is delegated, which task is current, and when a result may be spoken. Duplex-Harness-RSI revises those modules from timed conversations whose failures name the module to repair. The Exam Planner reads the repair archive; the Harness Editor proposes the next change.</p>
       <p class="authors">
         Yingda Shen<sup>*</sup>
         Yuxiang Wang<sup>*</sup>
@@ -87,7 +87,7 @@
       <div class="wrap">
         <p class="kicker"><span class="dash" aria-hidden="true"></span> 02 &nbsp; Overview</p>
         <h2>One harness, then a loop that edits it</h2>
-        <p class="lead">A deployed system is an interaction model, a delegation pool, and a collaboration harness. Duplex-Harness-RSI changes only the harness. The same reasoning and coding roles that serve the user also plan the next exam and propose the next repair.</p>
+        <p class="lead">A deployed system is an interaction model, a delegation pool, and a collaboration harness. Duplex-Harness-RSI changes only the harness. The Exam Planner selects tests from attributed failures and the repair archive. The Harness Editor revises the named modules.</p>
         <figure class="figure">
           <img src="assets/overview.png" alt="Diagram of DuplexAgent. The user talks to an interaction model, which hands work to a harness that accepts, tracks, routes, and delivers. The harness sends asynchronous tasks to a delegation pool for search, reasoning, and code. Below, one improvement round runs from a simulator and exam planner through an observer, diagnoser, harness editor, automatic evaluation, and stored experience.">
           <figcaption><strong>Schematic of DuplexAgent and Duplex-Harness-RSI.</strong></figcaption>
@@ -137,28 +137,28 @@
           </article>
           <article class="mod intake">
             <div class="tag">Intake</div>
-            <h3>Which live task the utterance changes</h3>
+            <h3>Operation expressed, and which live task</h3>
             <p>Parsing, control cues, task relations, and resolution rules.</p>
           </article>
           <article class="mod hold">
             <div class="tag">Hold</div>
-            <h3>What the user hears while work is pending</h3>
-            <p>Receipts, progress timing, and replies to control turns.</p>
+            <h3>What the user hears while a task is pending</h3>
+            <p>Receipts, progress timing, and control replies.</p>
           </article>
           <article class="mod worker">
             <div class="tag">Worker</div>
-            <h3>Who runs the job, and the result contract</h3>
-            <p>Routing, task instructions, result schemas, and skills.</p>
+            <h3>Delegate, context, and result contract</h3>
+            <p>Routing, task instructions, result schemas, and executable overrides.</p>
           </article>
           <article class="mod deliver">
             <div class="tag">Deliver</div>
-            <h3>When a current result may be spoken</h3>
+            <h3>When and how a current result returns</h3>
             <p>The speaking window, waiting, and success or failure rendering.</p>
           </article>
           <article class="mod memory">
             <div class="tag">Memory</div>
-            <h3>Context shared by both timelines</h3>
-            <p>Turn assembly, retention, compaction, and recovery after reset.</p>
+            <h3>Context shared by conversation and background work</h3>
+            <p>Turn assembly, retention, compaction, and reset recovery.</p>
           </article>
         </div>
         <div class="spec">
@@ -167,6 +167,7 @@
           <div><span>Coding</span><b>Codex, also the Harness Editor</b></div>
           <div><span>Speech</span><b>Qwen3-TTS for simulated exams</b></div>
         </div>
+        <p class="stat-note">VoiceChat is NVIDIA-NemotronLabs-VoiceChat-11B. Qwen-Realtime is Qwen-Audio-3.0-Realtime.</p>
       </div>
     </section>
 
@@ -202,7 +203,7 @@
           <img src="assets/leaderboard.png" alt="Four bar charts of delegated systems. DuplexAgent leads MMSU at 82.7, BFCL parallel-multiple at 78.0, FDB-v3 Pass at 1 at 49.0, and FDB-v1 interrupt takeover at 97.0.">
           <figcaption>Benchmark results for DuplexAgent (blue), compared with other collaboration systems (gray). Higher is better on every panel. Intelligence reports MMSU accuracy, agentic tool use reports BFCL parallel-multiple and FDB-v3 Pass@1, and duplex reports FDB-v1 interrupt TOR. DuplexAgent is stronger on all three capabilities. All collaboration systems use the same delegation LLM.</figcaption>
         </figure>
-        <div class="note"><strong>Timing is a separate result.</strong> Interrupt takeover stays high: 0.965 with VoiceChat and 0.97 with Qwen-Realtime. Pause behaviour is mixed. On Qwen-Realtime, synthetic pause takeover moves from 0.074 to 0.147, so one hesitation condition gets worse. The report does not treat duplex timing as uniformly improved.</div>
+        <div class="note"><strong>Timing remains a separate constraint.</strong> Interrupt takeover stays high: 0.965 with VoiceChat and 0.97 with Qwen-Realtime. On Qwen-Realtime, synthetic pause takeover moves from 0.074 to 0.147. Better task performance therefore coexists with a less favorable result on one pause condition, while the live channel remains responsive.</div>
       </div>
     </section>
 
@@ -211,15 +212,16 @@
         <p class="kicker"><span class="dash" aria-hidden="true"></span> 07 &nbsp; Duplex-Harness-RSI</p>
         <h2>The loop outperforms another pass over the same exams</h2>
         <div class="prose">
-          <p>On a fixed 76-item VoiceChat core, the initial harness and Qwen-Audio-Agent both score 54.6. Giving every exam from the campaign to one edit reaches 57.4. Replaying those exams for ten revisions, without per-round attribution or repair history, reaches 61.9. Ten rounds of Duplex-Harness-RSI reach 85.3. Missed delegation falls from 30.3% of core items to 1.3%. Extra delegation rises from 3.9% to 6.6%, and ignored control stays at 5.3%.</p>
-          <p>With Qwen-Realtime the fixed-core score moves from 47.1 at the initial harness to 84.8 after eight retained revisions, a gain of 37.7 points. A candidate replaces the incumbent only when it wins more paired cases than it loses and preserves the collaboration invariants. Rejected rounds keep the current harness, which is why the retained score is a staircase.</p>
+          <p>Qwen-Audio-Agent and the initial VoiceChat harness <em>g</em><sub>0</sub> both score 54.6, with different rates of missed and extra delegation. One-shot Editing, which pools every exam from the campaign into one revision, reaches 57.4. Sequential Editing replays those exams for ten revisions without per-round diagnosis or the repair archive, and reaches 61.9. The ten-round Duplex-Harness-RSI checkpoint <em>r</em><sub>10</sub> reaches 85.3, improving on <em>g</em><sub>0</sub> by 30.7 points and on Sequential Editing by 23.4 points. Repeated access to the same exams improves the harness. The full loop, which adds diagnosis and the repair archive, produces a substantially larger gain.</p>
+          <p>Missed delegation falls from 30.3% of items in the fixed core under <em>g</em><sub>0</sub> to 1.3% under Duplex-Harness-RSI. Extra delegation rises from 3.9% to 6.6%, and Control ignored stays at 5.3%. The main gain is recovered delegation, with a remaining tradeoff in unnecessary calls and unresolved control.</p>
+          <p>The Qwen-Realtime campaign is separate. Its initial harness <em>g</em><sub>0</sub> scores 47.1. Eight retained versions later, <em>g</em><sub>8</sub> scores 84.8, a gain of 37.7 points. Labels <em>g<sub>k</sub></em> count retained versions and <em>r<sub>t</sub></em> count completed rounds, so a round can finish without producing a new <em>g<sub>k</sub></em>. The dashed series is the fixed-core score after each round, including proposals that were not kept. The solid staircase is the best score of a harness that passed both gates.</p>
         </div>
         <figure class="figure">
-          <img src="assets/rsi-voicechat.png" alt="VoiceChat ablation. Collaboration score rises from 54.6 for the initial harness to 57.4 for one-shot editing, 61.9 for sequential editing, and 85.3 for RSI. A heatmap shows missed delegation falling from 30.3 percent to 1.3 percent.">
+          <img src="assets/voicechat-rsi-ablation.png" alt="VoiceChat harness ablation on the fixed core. Left: collaboration score Q from 54.6 for the initial harness and Qwen-Audio-Agent to 57.4 for one-shot editing, 61.9 for sequential editing, and 85.3 for RSI r10. Right: failure rates, with missed delegation falling from 30.3 percent to 1.3 percent.">
           <figcaption>VoiceChat harness ablation on the fixed core. The left panel is the collaboration score <em>Q</em>, and the right panel is the rate of each diagnostic failure. Duplex-Harness-RSI scores higher than one-shot or sequential editing.</figcaption>
         </figure>
         <figure class="figure" style="margin-top:14px">
-          <img src="assets/rsi-qwen.png" alt="Line chart of Qwen-Realtime harness improvement. The best retained score climbs from 47.1 at g0 to 84.8 at g8 across 18 rounds, with a dashed core-evaluation line that sometimes dips between retained revisions.">
+          <img src="assets/rsi-qwen.png" alt="Line chart of Duplex-Harness-RSI on Qwen-Realtime. Retained versions raise the collaboration score on the fixed core from 47.1 at g0 to 84.8 at g8.">
           <figcaption>Duplex-Harness-RSI on Qwen-Realtime. Retained versions raise the collaboration score on the fixed core from the initial harness <em>g</em><sub>0</sub> to <em>g</em><sub>8</sub>.</figcaption>
         </figure>
 
@@ -228,18 +230,19 @@
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Module</th><th>Repair</th><th>Local evidence</th></tr>
+              <tr><th>Module</th><th>Rule before repair</th><th>Rule after repair</th><th>Recorded local evidence</th></tr>
             </thead>
             <tbody>
-              <tr><td>Policy</td><td>Direct-answer categories stay explicit, so familiar conversation is not routed too broadly.</td><td>Extra calls reduced by 50%.</td></tr>
-              <tr><td>Intake</td><td>Cancellation and replacement resolve against live task state, including replacement preambles.</td><td>Ignored cancels reduced by 81%.</td></tr>
-              <tr><td>Hold</td><td>Progress is reported earlier, in a short receipt the adapter can speak.</td><td>Missing progress reduced by 75%.</td></tr>
-              <tr><td>Worker</td><td>Requested units and verified result content are preserved. Calculation is used when the request needs it.</td><td>Wrong answers reduced by 66.7%.</td></tr>
-              <tr><td>Deliver</td><td>Speech waits for user silence. An unsuccessful run is not rendered as a successful answer.</td><td>Overlaps and concealed failures reduced by 100% on the local exams.</td></tr>
-              <tr><td>Memory</td><td>Complete user turns and the relevant context travel with the delegated request.</td><td>Missing-context failures reduced by 60%.</td></tr>
+              <tr><td>Policy<sup>†</sup></td><td>Conversational and familiar-fact turns are routed too broadly.</td><td>State the direct-answer categories explicitly, while still delegating requests that need additional capability.</td><td>Extra calls reduced by 50%.</td></tr>
+              <tr><td>Intake<sup>*</sup></td><td>A late cancellation can be treated as work that has already completed.</td><td>Resolve the cancellation against live task state, and apply the same control handling to replacement preambles.</td><td>Ignored cancellations reduced by 81%. Replacements reduced by 65%, then by 83.3%.</td></tr>
+              <tr><td>Hold<sup>†</sup></td><td>Pending work does not receive a timely progress update.</td><td>Report progress earlier, and keep receipts brief and compatible with the adapter.</td><td>Missing progress updates reduced by 75%.</td></tr>
+              <tr><td>Worker<sup>*</sup></td><td>Conversions skip the required calculation, or reformulate output that was already verified.</td><td>Preserve the requested units and precision, calculate when the request requires it, and retain verified result content.</td><td>Wrong answers reduced by 66.7%.</td></tr>
+              <tr><td>Deliver<sup>*</sup></td><td>Completion can start speech during the user’s turn, and an inability to execute is reported as success.</td><td>Speak only once the user is silent, and distinguish unsuccessful execution from a successful answer.</td><td>Overlaps reduced by 100% on both attachments. Concealed failures reduced by 100%.</td></tr>
+              <tr><td>Memory<sup>*</sup></td><td>Delegation is correct, but the delegate receives an incomplete question or missing context.</td><td>Assemble the complete user turn, and retain the context that a delegated request needs.</td><td>Missing-context failures reduced by 60%.</td></tr>
             </tbody>
           </table>
         </div>
+        <p class="stat-note"><sup>*</sup> VoiceChat &nbsp;&nbsp; <sup>†</sup> Qwen-Realtime</p>
       </div>
     </section>
 
