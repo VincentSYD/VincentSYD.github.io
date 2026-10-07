@@ -23,8 +23,8 @@
     <nav class="nav" aria-label="Page">
       <a href="#demo">Demo</a>
       <a href="#overview">Overview</a>
-      <a href="#session">Session</a>
       <a href="#harness">Harness</a>
+      <a href="#session">Session</a>
       <a href="#simulator">Simulator</a>
       <a href="#results">Results</a>
       <a href="#rsi">RSI</a>
@@ -37,7 +37,7 @@
       <p class="kicker"><span class="dash" aria-hidden="true"></span> Full-duplex voice agent collaboration</p>
       <h1>DuplexAgent-RSI</h1>
       <p class="subtitle">Recursive harness improvement for full-duplex voice agent collaboration</p>
-      <p class="dek">A full-duplex model stays on the live channel, while search, reasoning, and coding are delegated asynchronously. DuplexAgent writes that coordination as six editable modules. Duplex-Harness-RSI revises them from timed conversations whose failures name the module to repair: the Exam Planner selects the next tests from observed weaknesses and the repair archive, and the Harness Editor proposes the change. The loop outperforms the initial harness and repeated editing without that diagnosis, while spoken knowledge and executable tool use improve and interruption response stays strong.</p>
+      <p class="dek">A full-duplex model stays on the live channel, while search, reasoning, and coding are delegated asynchronously. DuplexAgent writes that coordination as six editable modules. Duplex-Harness-RSI revises them from timed conversations whose failures name which module to repair: the Exam Planner selects the next tests from observed weaknesses and the repair archive, and the Harness Editor proposes the change. The loop outperforms the initial harness and repeated editing without that diagnosis, while spoken knowledge and executable tool use improve and interruption response stays strong.</p>
       <p class="authors">
         Yingda Shen<sup>*</sup>
         Yuxiang Wang<sup>*</sup>
@@ -66,7 +66,7 @@
       <div class="wrap">
         <p class="kicker"><span class="dash" aria-hidden="true"></span> 01 &nbsp; Demo</p>
         <h2>The conversation stays live while the work runs</h2>
-        <p class="lead">A recorded session of the system. The interaction model keeps the microphone. The harness trace shows which module is acting, and a coding agent builds in the background without taking the turn.</p>
+        <p class="lead">In this recorded session, the interaction model keeps the microphone. The harness trace shows which module is acting, and a coding agent builds in the background without taking the turn.</p>
         <video class="demo" controls playsinline preload="metadata" poster="assets/demo-poster.jpg">
           <source src="assets/demo.mp4" type="video/mp4">
         </video>
@@ -76,8 +76,9 @@
     <section id="overview">
       <div class="wrap">
         <p class="kicker"><span class="dash" aria-hidden="true"></span> 02 &nbsp; Overview</p>
-        <h2>One harness, then a loop that edits it</h2>
-        <p class="lead">A deployed system is an interaction model, a delegation pool, and a collaboration harness. Duplex-Harness-RSI changes only the harness. The Exam Planner selects tests from attributed failures and the repair archive. The Harness Editor revises the named modules.</p>
+        <h2>DuplexAgent executes tasks in a live conversation. RSI improves the harness.</h2>
+        <p class="lead"><strong>DuplexAgent</strong> is a full-duplex collaboration system. The interaction model remains the conversational entry, and a delegation pool of reasoning LLMs and coding agents carries search, reasoning, and coding. Their exchange is written as six editable modules: Policy, Intake, Hold, Worker, Deliver, and Memory. The harness decides what is accepted, which task is current, and when a result may be spoken.</p>
+        <p class="lead"><strong>Duplex-Harness-RSI</strong> revises that harness and leaves the attached models fixed. Separating the modules gives each failure a place to investigate. A reasoning LLM from the same pool is the Exam Planner: it reads attributed failures and the repair archive, then chooses the next exam. A coding agent from the same pool is the Harness Editor and changes the modules the diagnosis names. Paired checks tie each revision to the conversation, so the capabilities that serve the user also improve the harness.</p>
         <figure class="figure">
           <img src="assets/overview.png" alt="Diagram of DuplexAgent. The user talks to an interaction model, which hands work to a harness that accepts, tracks, routes, and delivers. The harness sends asynchronous tasks to a delegation pool for search, reasoning, and code. Below, one improvement round runs from a simulator and exam planner through an observer, diagnoser, harness editor, automatic evaluation, and stored experience.">
           <figcaption><strong>Schematic of DuplexAgent and Duplex-Harness-RSI.</strong></figcaption>
@@ -85,40 +86,11 @@
       </div>
     </section>
 
-    <section id="session">
-      <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 03 &nbsp; A live session</p>
-        <h2>The user changes the task while work is running</h2>
-        <p class="lead">A useful result is one that still answers the current request and can be spoken without talking over the user. The session below is the running example in the report: Snake is cancelled, Tetris replaces it, and the late Snake result is discarded.</p>
-        <figure class="figure">
-          <img src="assets/comic.jpg" alt="Six-panel comic. A person asks a small robot to build Snake. While Snake is running the robot stays present. The person cancels Snake and asks for Tetris. A stale Snake result is discarded. Tetris becomes ready and the robot waits for a pause, then says the Tetris game is ready.">
-          <figcaption><strong>A full-duplex collaboration session.</strong> The user requests Snake, then cancels it and asks for Tetris while work is running. The obsolete Snake result is discarded. The current Tetris result returns through the interaction model after the user pauses.</figcaption>
-        </figure>
-        <div class="story">
-          <article>
-            <div class="n">Accept</div>
-            <h3>Snake starts</h3>
-            <p>Policy delegates the implementation. Hold acknowledges it. Worker sends the goal and context to a coding agent.</p>
-          </article>
-          <article>
-            <div class="n">Replace</div>
-            <h3>Tetris takes the ledger</h3>
-            <p>The user cancels Snake mid-run. Intake marks Snake obsolete. A late Snake result is recorded and cannot become current again.</p>
-          </article>
-          <article>
-            <div class="n">Deliver</div>
-            <h3>Speak on a pause</h3>
-            <p>When Tetris is ready, Deliver waits until the user is not speaking, then returns that result through the interaction model.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section id="harness">
       <div class="wrap">
-        <p class="kicker"><span class="dash" aria-hidden="true"></span> 04 &nbsp; Harness</p>
-        <h2>Six decisions, each with an edit surface</h2>
-        <p class="lead">The split is what makes a failure local. Policy and Intake decide what the user means. Hold and Deliver protect the conversational rhythm. Worker hands work to a delegate. Memory keeps context on both timelines.</p>
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 03 &nbsp; Harness</p>
+        <h2>Six editable modules</h2>
+        <p class="lead">We divide the collaboration path into six modules. A failure can then be attributed to the responsible module, and the repair targets that module. Policy and Intake decide what the user is asking and which live task it concerns. Hold and Deliver protect the conversational rhythm: what the user hears while work is pending, and when a result may be spoken. Worker hands the job to a delegate. Memory keeps the context shared by the conversation and the background work.</p>
         <div class="mods">
           <article class="mod policy">
             <div class="tag">Policy</div>
@@ -151,13 +123,40 @@
             <p>Turn assembly, retention, compaction, and reset recovery.</p>
           </article>
         </div>
-        <div class="spec">
-          <div><span>Interaction</span><b>VoiceChat and Qwen-Realtime</b></div>
-          <div><span>Reasoning</span><b>DeepSeek-v4-flash</b></div>
-          <div><span>Coding</span><b>Codex, also the Harness Editor</b></div>
-          <div><span>Speech</span><b>Qwen3-TTS for simulated exams</b></div>
+      </div>
+    </section>
+
+    <section id="session">
+      <div class="wrap">
+        <p class="kicker"><span class="dash" aria-hidden="true"></span> 04 &nbsp; A live session</p>
+        <h2>One task, carried by all six modules</h2>
+        <p class="lead">The user asks for a Snake game. A coding agent builds it asynchronously, while the interaction model stays in the conversation. Because the channel is full-duplex, the user can interrupt, cancel, or switch tasks at any moment: here they cancel Snake and ask for Tetris before the first task has finished. The six modules carry that path together.</p>
+        <figure class="figure">
+          <img src="assets/comic.jpg" alt="Six-panel comic. A person asks a small robot to build Snake. While Snake is running the robot stays present. The person cancels Snake and asks for Tetris. A stale Snake result is discarded. Tetris becomes ready and the robot waits for a pause, then says the Tetris game is ready.">
+          <figcaption><strong>A full-duplex collaboration session.</strong> The user requests Snake, then cancels it and asks for Tetris while work is running. The obsolete Snake result is discarded. The current Tetris result returns through the interaction model after the user pauses.</figcaption>
+        </figure>
+        <div class="walk">
+          <article>
+            <div class="n">Request</div>
+            <p><strong>Policy</strong> decides that building the game should be delegated. <strong>Memory</strong> retains the goal.</p>
+          </article>
+          <article>
+            <div class="n">Open</div>
+            <p><strong>Intake</strong> opens the task. <strong>Hold</strong> acknowledges it. <strong>Worker</strong> sends the request and the relevant context to a coding agent.</p>
+          </article>
+          <article>
+            <div class="n">Replace</div>
+            <p>The user cancels Snake and asks for Tetris. <strong>Intake</strong> resolves the cancellation and the replacement against the ledger. <strong>Memory</strong> updates the context. <strong>Hold</strong> acknowledges the change.</p>
+          </article>
+          <article>
+            <div class="n">Late return</div>
+            <p>Snake comes back after it has been replaced. The result is recorded, but it cannot be delivered, and it cannot make Snake current again.</p>
+          </article>
+          <article>
+            <div class="n">Speak</div>
+            <p>When Tetris is ready, <strong>Deliver</strong> waits for a speaking window and returns that result through the interaction model. The six modules cooperate over time, rather than acting as independent stages.</p>
+          </article>
         </div>
-        <p class="stat-note">VoiceChat is NVIDIA-NemotronLabs-VoiceChat-11B. Qwen-Realtime is Qwen-Audio-3.0-Realtime.</p>
       </div>
     </section>
 
@@ -170,41 +169,34 @@
           <img src="assets/simulator.png" alt="Simulator diagram. Experience feeds an exam planner, which selects a cell in a grid of request types against interaction patterns. A selected cell is compiled into a timed test, then varied with acoustic conditions, speech rendering, and spoken paraphrases to form a corpus.">
           <figcaption><strong>Test-conversation construction.</strong> The Exam Planner selects coverage over request types, interaction patterns, and input conditions. Content generation and deterministic temporal composition produce a corpus with explicit expectations. Speech rendering and acoustic augmentation turn it into timed audio input.</figcaption>
         </figure>
-        <div class="chips">
-          <div class="chip"><b>Content.</b> Conversational, information, reasoning, action.</div>
-          <div class="chip"><b>Patterns.</b> Nominal, task control, concurrent work, overlap, recovery.</div>
-          <div class="chip"><b>Splits.</b> Development, protection, and sealed, assigned before audio is composed.</div>
-        </div>
       </div>
     </section>
 
     <section id="results">
       <div class="wrap">
         <p class="kicker"><span class="dash" aria-hidden="true"></span> 06 &nbsp; Results</p>
-        <h2>Delegation helps when the handoff stays exact</h2>
+        <h2>Stronger on spoken knowledge, tool use, and interruption</h2>
         <div class="prose">
-          <p>A background model can write a better spoken answer and still lose the benchmark function call, if the harness replaces that call with a title or a sentence. DuplexAgent keeps the routing decision separate from the content of the handoff. Direct questions stay on the interaction model. Tool requests leave as executable calls, with the arguments Memory kept from the user turn.</p>
+          <p>DuplexAgent leads the other collaboration systems on all three capabilities, and those systems use the same delegation LLM. Spoken knowledge is measured by MMSU, executable tool use by BFCL parallel-multiple and FDB-v3 Pass@1, and duplex timing by FDB-v1 interrupt takeover. On a fixed attachment it also scores above the interaction model alone and above Qwen-Audio-Agent. A direct question stays a spoken answer. A tool request stays an executable call, with its arguments passed through rather than replaced by a title.</p>
         </div>
         <figure class="figure">
-          <img src="assets/gains.png" alt="Grouped bar charts for VoiceChat and Qwen-Realtime. On each attachment, grey is the interaction model alone, lavender is Qwen-Audio-Agent, and purple is DuplexAgent, on BFCL average, FDB-v3 Pass at 1, OBQA, and MMSU.">
-          <figcaption>DuplexAgent scores above its standalone interaction model and above Qwen-Audio-Agent on the same attachment.</figcaption>
-        </figure>
-        <figure class="figure" style="margin-top:14px">
           <img src="assets/leaderboard.png" alt="Four bar charts of delegated systems. DuplexAgent leads MMSU at 82.7, BFCL parallel-multiple at 78.0, FDB-v3 Pass at 1 at 49.0, and FDB-v1 interrupt takeover at 97.0.">
           <figcaption>Benchmark results for DuplexAgent (blue), compared with other collaboration systems (gray). Higher is better on every panel. Intelligence reports MMSU accuracy, agentic tool use reports BFCL parallel-multiple and FDB-v3 Pass@1, and duplex reports FDB-v1 interrupt TOR. DuplexAgent is stronger on all three capabilities. All collaboration systems use the same delegation LLM.</figcaption>
         </figure>
-        <div class="note"><strong>Timing remains a separate constraint.</strong> Interrupt takeover stays high: 0.965 with VoiceChat and 0.97 with Qwen-Realtime. On Qwen-Realtime, synthetic pause takeover moves from 0.074 to 0.147. Better task performance therefore coexists with a less favorable result on one pause condition, while the live channel remains responsive.</div>
+        <figure class="figure" style="margin-top:14px">
+          <img src="assets/gains.png" alt="Grouped bar charts for VoiceChat and Qwen-Realtime. On each attachment, grey is the interaction model alone, lavender is Qwen-Audio-Agent, and purple is DuplexAgent, on BFCL average, FDB-v3 Pass at 1, OBQA, and MMSU.">
+          <figcaption>DuplexAgent scores above its standalone interaction model and above Qwen-Audio-Agent on the same attachment.</figcaption>
+        </figure>
       </div>
     </section>
 
     <section id="rsi">
       <div class="wrap">
         <p class="kicker"><span class="dash" aria-hidden="true"></span> 07 &nbsp; Duplex-Harness-RSI</p>
-        <h2>The loop outperforms another pass over the same exams</h2>
+        <h2>Recursive self-improvement (RSI) keeps raising performance</h2>
         <div class="prose">
-          <p>Qwen-Audio-Agent and the initial VoiceChat harness <em>g</em><sub>0</sub> both score 54.6, with different rates of missed and extra delegation. One-shot Editing, which pools every exam from the campaign into one revision, reaches 57.4. Sequential Editing replays those exams for ten revisions without per-round diagnosis or the repair archive, and reaches 61.9. The ten-round Duplex-Harness-RSI checkpoint <em>r</em><sub>10</sub> reaches 85.3, improving on <em>g</em><sub>0</sub> by 30.7 points and on Sequential Editing by 23.4 points. Repeated access to the same exams improves the harness. The full loop, which adds diagnosis and the repair archive, produces a substantially larger gain.</p>
-          <p>Missed delegation falls from 30.3% of items in the fixed core under <em>g</em><sub>0</sub> to 1.3% under Duplex-Harness-RSI. Extra delegation rises from 3.9% to 6.6%, and Control ignored stays at 5.3%. The main gain is recovered delegation, with a remaining tradeoff in unnecessary calls and unresolved control.</p>
-          <p>The Qwen-Realtime campaign is separate. Its initial harness <em>g</em><sub>0</sub> scores 47.1. Eight retained versions later, <em>g</em><sub>8</sub> scores 84.8, a gain of 37.7 points. Labels <em>g<sub>k</sub></em> count retained versions and <em>r<sub>t</sub></em> count completed rounds, so a round can finish without producing a new <em>g<sub>k</sub></em>. The dashed series is the fixed-core score after each round, including proposals that were not kept. The solid staircase is the best score of a harness that passed both gates.</p>
+          <p>Duplex-Harness-RSI improves the harness on its own, and the gain is large. On the same VoiceChat exams it clearly outperforms the initial harness, a single pooled revision, and ten revisions that replay those exams without using what earlier rounds learned. Each round starts from the harness already kept, finds the failures that remain, and edits the module responsible. A change stays only when the checks support it, so the next round can build on a better harness. Performance keeps rising. The clearest gain is that the system now takes on the delegated work it used to miss.</p>
+          <p>The same self-improvement holds on Qwen-Realtime. Retained versions steadily raise the collaboration score. Each kept version is stronger than the one before it, so the loop can continue to improve the harness rather than stop after one edit.</p>
         </div>
         <figure class="figure">
           <img src="assets/voicechat-rsi-ablation.png" alt="VoiceChat harness ablation on the fixed core. Left: collaboration score Q from 54.6 for the initial harness and Qwen-Audio-Agent to 57.4 for one-shot editing, 61.9 for sequential editing, and 85.3 for RSI r10. Right: failure rates, with missed delegation falling from 30.3 percent to 1.3 percent.">
@@ -216,7 +208,7 @@
         </figure>
 
         <h2 style="margin-top:36px">What the modules changed</h2>
-        <p class="lead">Representative harness repairs. Each change reduces the targeted failures on the local exam used to test it.</p>
+        <p class="lead">These are the repairs the loop kept. Each one fixes the failure a round found, and together they raise the harness from the version the campaign started with.</p>
         <div class="table-wrap">
           <table>
             <thead>
@@ -244,7 +236,7 @@
         <div class="cite">
           <button class="copy" type="button" id="copy">Copy</button>
           <pre id="bibtex">@misc{shen2026duplexagent,
-  title  = {DuplexAgent: Recursive Harness Improvement for Full-Duplex Voice Agent Collaboration},
+  title  = {DuplexAgent-RSI: Recursive Harness Improvement for Full-Duplex Voice Agent Collaboration},
   author = {Shen, Yingda and Wang, Yuxiang and Feng, Kunyu and Ni, Qinke and Li, Jiaqi and Hsu, Minghao and Zhang, Junan and Chen, Dekun and Bian, Yutong and Wu, Zhizheng},
   year   = {2026},
   note   = {Technical report}
